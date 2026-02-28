@@ -3,40 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My iPad Daily Dashboard</title>
+    <title>iPad Daily Dashboard</title>
     <style>
-        body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container { text-align: center; }
-        h1 { font-size: 3rem; margin-bottom: 10px; color: #007AFF; }
-        .date { font-size: 1.5rem; color: #888; margin-bottom: 40px; }
-        .quote { font-style: italic; max-width: 400px; margin-bottom: 40px; }
+        body { background-color: #121212; color: #ffffff; font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .container { text-align: center; padding: 20px; }
+        h1 { font-size: 4rem; margin: 0; color: #007AFF; }
+        .date { font-size: 1.2rem; color: #888; margin-bottom: 30px; }
+        
+        /* Goal Tracker Styling */
+        .goal-box { background: #1c1c1e; padding: 20px; border-radius: 15px; border: 1px solid #333; width: 300px; margin-bottom: 30px; }
+        input { background: transparent; border: none; border-bottom: 2px solid #007AFF; color: white; width: 90%; font-size: 1.1rem; text-align: center; outline: none; padding: 10px; }
+        label { display: block; font-size: 0.8rem; color: #888; text-transform: uppercase; margin-bottom: 10px; }
+
         .links { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .btn {
-            padding: 15px 30px;
-            background: #1c1c1e;
-            color: #007AFF;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: bold;
-            border: 1px solid #333;
-        }
+        .btn { padding: 15px 25px; background: #1c1c1e; color: #007AFF; text-decoration: none; border-radius: 12px; font-weight: bold; border: 1px solid #333; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 id="time">00:00</h1>
         <div class="date" id="date">Loading...</div>
-        <p class="quote">"The best way to predict the future is to create it."</p>
+
+        <div class="goal-box">
+            <label>Today's Main Goal</label>
+            <input type="text" placeholder="Tap to set goal...">
+        </div>
         
         <div class="links">
             <a href="https://github.com" class="btn">GitHub</a>
@@ -48,7 +39,7 @@
         function updateTime() {
             const now = new Date();
             document.getElementById('time').innerText = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            document.getElementById('date').innerText = now.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('date').innerText = now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
         }
         setInterval(updateTime, 1000);
         updateTime();
